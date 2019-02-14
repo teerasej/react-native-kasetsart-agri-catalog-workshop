@@ -29,23 +29,6 @@ export default class App extends React.Component {
     loading: true,
   }
 
-  nameArray = [
-    "John Doe",
-    "Peter Corp",
-    "Tessa",
-    "Depp",
-    "Tony Stark",
-    "Bruce Banner"
-  ];
-
-  items = [
-    { name: 'สมชาย', tel: '(884)-630-1206', imageURL: 'https://randomuser.me/api/portraits/men/73.jpg' },
-    { name: 'สุชาติ', tel: '0901-875-7972', imageURL: 'https://randomuser.me/api/portraits/men/43.jpg' },
-    { name: 'สมหมาย', tel: '(099)-724-0617', imageURL: 'https://randomuser.me/api/portraits/men/66.jpg' },
-    { name: 'สมศักดิ์', tel: '(063)-186-6153', imageURL: 'https://randomuser.me/api/portraits/men/59.jpg' },
-    { name: 'สุขใจ', tel: '140-536-9678', imageURL: 'https://randomuser.me/api/portraits/men/33.jpg' },
-  ];
-
 
   constructor(props) {
     super(props);
@@ -54,13 +37,13 @@ export default class App extends React.Component {
   async componentDidMount() {
     console.log('เริ่มแอพ...');
 
-    let response = await fetch("https://randomuser.me/api/?results=20");
+    let response = await fetch("http://aginfo.oae.go.th/Mobile_App_php/json/day.php");
     // console.log(response);
     let json = await response.json();
     console.log(json)
 
     this.setState({
-      items: json.results
+      items: json
     })
   }
 
@@ -93,10 +76,10 @@ export default class App extends React.Component {
               return (
                 <ListItem thumbnail>
                   <Left>
-                    <Thumbnail square source={ { uri: rowData.picture.large } } />
+                    <Thumbnail square source={ { uri: rowData.image_g } } />
                   </Left>
                   <Body>
-                    <Text>{rowData.name.first} {rowData.name.last}</Text>
+                    <Text>{rowData.group_c} {rowData.group_n}</Text>
                     <Text note>{rowData.phone}</Text>
                   </Body> 
                 </ListItem>
